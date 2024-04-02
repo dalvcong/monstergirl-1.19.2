@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "monstergirl",
+	"version": "${version}",
+	"name": "MonsterGirl",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"dalvcong"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/monstergirl/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dalvcong.monstergirl.MonsterGirl"
+		],
+		"fabric-datagen": [
+			"dalvcong.monstergirl.MonsterGirlDataGenerator"
+		],
+		"client": [
+			"dalvcong.monstergirl.MonsterGirlClient"
+		]
+	},
+	"mixins": [
+		"monstergirl.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.9",
+		"minecraft": "~1.19.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
