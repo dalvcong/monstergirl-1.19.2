@@ -5,7 +5,6 @@ import dalvcong.monstergirl.entity.custom.CreepergirlEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
@@ -29,10 +28,13 @@ public class CreepergirlModel extends AnimatedGeoModel<CreepergirlEntity> {
     @Override
     public void setCustomAnimations(CreepergirlEntity animatable, int instanceId, AnimationEvent animationEvent) {
         super.setCustomAnimations(animatable, instanceId, animationEvent);
-        IBone head = getAnimationProcessor().getBone("head2");
-        EntityModelData extraData = (EntityModelData) animationEvent.getExtraDataOfType(EntityModelData.class).get(0);
-        head.setPositionX(extraData.headPitch * MathHelper.RADIANS_PER_DEGREE);
-        head.setRotationY(extraData.netHeadYaw * MathHelper.RADIANS_PER_DEGREE);
+        IBone head = getAnimationProcessor().getBone("head");
+
+        if (head != null) {
+            EntityModelData extraData = (EntityModelData) animationEvent.getExtraDataOfType(EntityModelData.class).get(0);
+            head.setRotationX(extraData.headPitch * MathHelper.RADIANS_PER_DEGREE);
+            head.setRotationY(extraData.netHeadYaw * MathHelper.RADIANS_PER_DEGREE);
+        }
 
 
     }

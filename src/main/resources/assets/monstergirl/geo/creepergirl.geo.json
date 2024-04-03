@@ -3054,7 +3054,7 @@
 					]
 				},
 				{
-					"name": "head2",
+					"name": "head",
 					"parent": "head1",
 					"pivot": [0, 24, 0.075],
 					"cubes": [
@@ -3102,7 +3102,7 @@
 				},
 				{
 					"name": "right_eye1",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [-1.875, 25.5, -2.625],
 					"cubes": [
 						{
@@ -3214,7 +3214,7 @@
 				},
 				{
 					"name": "right_eye5",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [-1.875, 26.25, -2.8125],
 					"cubes": [
 						{
@@ -3263,7 +3263,7 @@
 				},
 				{
 					"name": "right_eye6",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [-1.875, 25.5, -2.625],
 					"cubes": [
 						{
@@ -3310,7 +3310,7 @@
 				},
 				{
 					"name": "left_eye1",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [1.875, 25.5, -2.625],
 					"cubes": [
 						{
@@ -3422,7 +3422,7 @@
 				},
 				{
 					"name": "left_eye5",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [1.875, 26.25, -2.8125],
 					"cubes": [
 						{
@@ -3471,7 +3471,7 @@
 				},
 				{
 					"name": "left_eye6",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [1.875, 25.5, -2.625],
 					"cubes": [
 						{
@@ -3518,7 +3518,7 @@
 				},
 				{
 					"name": "hair",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [0, 24, 0.1875]
 				},
 				{
@@ -4312,7 +4312,7 @@
 				},
 				{
 					"name": "hat",
-					"parent": "head2",
+					"parent": "head",
 					"pivot": [0, 24, 0.075],
 					"cubes": [
 						{
