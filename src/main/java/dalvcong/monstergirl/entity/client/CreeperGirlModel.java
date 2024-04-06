@@ -1,7 +1,7 @@
 package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
-import dalvcong.monstergirl.entity.custom.CreepergirlEntity;
+import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -9,26 +9,26 @@ import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
-public class CreepergirlModel extends AnimatedGeoModel<CreepergirlEntity> {
+public class CreeperGirlModel extends AnimatedGeoModel<CreeperGirlEntity> {
     @Override
-    public Identifier getModelResource(CreepergirlEntity object) {
+    public Identifier getModelResource(CreeperGirlEntity object) {
         return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl.geo.json");
     }
 
     @Override
-    public Identifier getTextureResource(CreepergirlEntity object) {
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl1.png");
+    public Identifier getTextureResource(CreeperGirlEntity object) {
+        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png");
     }
 
     @Override
-    public Identifier getAnimationResource(CreepergirlEntity animatable) {
+    public Identifier getAnimationResource(CreeperGirlEntity animatable) {
         return new Identifier(MonsterGirl.MOD_ID, "animations/creepergirl.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(CreepergirlEntity animatable, int instanceId, AnimationEvent animationEvent) {
+    public void setCustomAnimations(CreeperGirlEntity animatable, int instanceId, AnimationEvent animationEvent) {
         super.setCustomAnimations(animatable, instanceId, animationEvent);
-        IBone head = getAnimationProcessor().getBone("head");
+        IBone head = getAnimationProcessor().getBone("headd");
 
         if (head != null) {
             EntityModelData extraData = (EntityModelData) animationEvent.getExtraDataOfType(EntityModelData.class).get(0);

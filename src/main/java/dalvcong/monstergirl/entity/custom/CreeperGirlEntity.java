@@ -1,6 +1,8 @@
 package dalvcong.monstergirl.entity.custom;
 
 import dalvcong.monstergirl.item.ModItems;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,10 +28,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class CreepergirlEntity extends TameableEntity implements IAnimatable {
+public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public CreepergirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
+    public CreeperGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -44,11 +46,11 @@ public class CreepergirlEntity extends TameableEntity implements IAnimatable {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new SitGoal(this));
-        this.goalSelector.add(3, new FollowOwnerGoal(this, 1.05, 6.0F, 2.0F, false));
-        this.goalSelector.add(4, new WanderAroundGoal(this, 1D));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(5, new LookAroundGoal(this));
+        this.goalSelector.add(3, new SitGoal(this));
+        this.goalSelector.add(4, new FollowOwnerGoal(this, 1.05, 8.0F, 2.0F, false));
+        this.goalSelector.add(5, new WanderAroundGoal(this, 1D));
+        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
+        this.goalSelector.add(2, new LookAroundGoal(this));
     }
 
     public void mobTick() {
@@ -61,7 +63,7 @@ public class CreepergirlEntity extends TameableEntity implements IAnimatable {
         }
     }
 
-
+    
 
     @Override
     public void registerControllers(AnimationData animationData) {
@@ -70,22 +72,32 @@ public class CreepergirlEntity extends TameableEntity implements IAnimatable {
     }
 
     private <T extends IAnimatable> PlayState predicate(AnimationEvent<T> event) {
+        if (this.isTouchingWater()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("swim",ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
+        if (!this.isOnGround()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("jump",ILoopType.EDefaultLoopTypes.LOOP));
+            return PlayState.CONTINUE;
+        }
         if (this.isSprinting()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.run",ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("run",ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk",ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk",ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
         if (this.hasVehicle()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.sit",ILoopType.EDefaultLoopTypes.LOOP));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("sit",ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", ILoopType.EDefaultLoopTypes.LOOP));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
+
+
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -141,10 +153,18 @@ public class CreepergirlEntity extends TameableEntity implements IAnimatable {
             return super.interactMob(player, hand);
         }
 
-
     }
 
+    @Override
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return 1.42f;
+    }
 
+    @Override
+    public double getHeightOffset() {
+
+        return -0.5;
+    }
 
     @Override
     public AnimationFactory getFactory() {
