@@ -16,9 +16,7 @@ public class ModItems {
     public static final Item CREEPERGIRL_SPAWN_EGG = regisierItem("creepergirl_spawn_egg",
             new SpawnEggItem(ModEntities.CREEPERGIRL, 0xffffff, 0x000000,
                     new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
-
-
-
+    
 
 
     private static Item regisierItem(String name, Item item) {
