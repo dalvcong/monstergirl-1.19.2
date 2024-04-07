@@ -22,7 +22,7 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EndermanGirlEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 1.88f)).build());
     public static final EntityType<ZombieGirlEntity> ZOMBIEGIRL = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MonsterGirl.MOD_ID, "zombirgirl"),
+            Registry.ENTITY_TYPE, new Identifier(MonsterGirl.MOD_ID, "zombiegirl"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ZombieGirlEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 1.68f)).build());
     public static final EntityType<SkeletonGirlEntity> SKELETONGIRL = Registry.register(
