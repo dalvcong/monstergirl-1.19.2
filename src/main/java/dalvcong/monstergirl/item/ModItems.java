@@ -20,6 +20,14 @@ public class ModItems {
     public static final Item ENDERMANRGIRL_SPAWN_EGG = regisierItem("endermangirl_spawn_egg",
             new SpawnEggItem(ModEntities.ENDERMANGIRL, 0xffffff, 0x000000,
                     new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
+
+    public static final Item ZOMBIERGIRL_SPAWN_EGG = regisierItem("zombiegirl_spawn_egg",
+            new SpawnEggItem(ModEntities.ZOMBIEGIRL, 0xffffff, 0x000000,
+                    new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
+
+    public static final Item SKELETONGIRL_SPAWN_EGG = regisierItem("skeletongirl_spawn_egg",
+            new SpawnEggItem(ModEntities.SKELETONGIRL, 0xffffff, 0x000000,
+                    new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
     
 
 

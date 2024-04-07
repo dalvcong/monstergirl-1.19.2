@@ -3637,7 +3637,10 @@
 			"animation_length": 0.375,
 			"bones": {
 				"Root": {
-					"position": [0, 0, 2]
+					"position": {
+						"0.0": [0, 0, 2],
+						"0.0833": [0, 0, 2]
+					}
 				},
 				"UpBody": {
 					"rotation": [-12.5, 0, 0]

@@ -7,7 +7,11 @@
 
   "item.monstergirl.creepergirl_spawn_egg": "苦力怕娘刷怪蛋",
   "item.monstergirl.endermangirl_spawn_egg": "末影娘刷怪蛋",
+  "item.monstergirl.zombiegirl_spawn_egg": "僵尸娘刷怪蛋",
+  "item.monstergirl.skeletongirl_spawn_egg": "骷髅娘刷怪蛋",
 
   "entity.monstergirl.creepergirl": "苦力怕娘",
-  "entity.monstergirl.endermangirl": "末影娘"
+  "entity.monstergirl.endermangirl": "末影娘",
+  "entity.monstergirl.zombiegirl": "僵尸娘",
+  "entity.monstergirl.skeletongirl": "骷髅娘"
 }

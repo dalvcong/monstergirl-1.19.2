@@ -167,7 +167,7 @@ public class EndermanGirlEntity extends TameableEntity implements IAnimatable {
     @Override
     public double getHeightOffset() {
 
-        return -0.625;
+        return -0.61;
     }
 
     @Override
