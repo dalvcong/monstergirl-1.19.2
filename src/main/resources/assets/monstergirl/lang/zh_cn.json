@@ -6,6 +6,8 @@
   "itemGroup.monstergirl.haoganjiejing": "怪物娘",
 
   "item.monstergirl.creepergirl_spawn_egg": "苦力怕娘刷怪蛋",
+  "item.monstergirl.endermangirl_spawn_egg": "末影娘刷怪蛋",
 
-  "entity.monstergirl.creepergirl": "苦力怕娘"
+  "entity.monstergirl.creepergirl": "苦力怕娘",
+  "entity.monstergirl.endermangirl": "末影娘"
 }

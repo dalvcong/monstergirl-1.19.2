@@ -1154,13 +1154,13 @@
 					]
 				},
 				{
-					"name": "headd",
+					"name": "Head",
 					"parent": "AllHead",
 					"pivot": [0, 32.5, 0.1]
 				},
 				{
-					"name": "Head",
-					"parent": "headd",
+					"name": "headd",
+					"parent": "Head",
 					"pivot": [0, 32.5, 0.1],
 					"cubes": [
 						{
@@ -1207,7 +1207,7 @@
 				},
 				{
 					"name": "Eyes",
-					"parent": "Head",
+					"parent": "headd",
 					"pivot": [0, 32.5, 0.1]
 				},
 				{
@@ -1727,7 +1727,7 @@
 				},
 				{
 					"name": "Hair",
-					"parent": "Head",
+					"parent": "headd",
 					"pivot": [0, 32.5, 0]
 				},
 				{

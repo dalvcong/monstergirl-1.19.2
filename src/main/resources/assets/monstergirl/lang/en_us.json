@@ -6,6 +6,8 @@
   "itemGroup.monstergirl.haoganjiejing": "monstergirl",
 
   "item.monstergirl.creepergirl_spawn_egg": "creepergirl spawn egg",
+  "item.monstergirl.endermangirl_spawn_egg": "endermangirl spawn egg",
 
-  "entity.monstergirl.creepergirl": "creepergirl"
+  "entity.monstergirl.creepergirl": "creeper girl",
+  "entity.monstergirl.endermangirl": "enderman girl"
 }

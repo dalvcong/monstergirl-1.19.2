@@ -3,6 +3,7 @@ package dalvcong.monstergirl;
 import dalvcong.monstergirl.block.ModBlocks;
 import dalvcong.monstergirl.entity.ModEntities;
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.custom.EndermanGirlEntity;
 import dalvcong.monstergirl.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -24,5 +25,6 @@ public class MonsterGirl implements ModInitializer {
 		GeckoLib.initialize();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.CREEPERGIRL, CreeperGirlEntity.setAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.ENDERMANGIRL, EndermanGirlEntity.setAttributes());
 	}
 }

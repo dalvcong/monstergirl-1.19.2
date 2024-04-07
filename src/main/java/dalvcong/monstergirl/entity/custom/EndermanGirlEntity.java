@@ -28,10 +28,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
+public class EndermanGirlEntity extends TameableEntity implements IAnimatable {
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public CreeperGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
+    public EndermanGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -161,13 +161,13 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
     @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 1.42f;
+        return 1.61f;
     }
 
     @Override
     public double getHeightOffset() {
 
-        return -0.475;
+        return -0.625;
     }
 
     @Override

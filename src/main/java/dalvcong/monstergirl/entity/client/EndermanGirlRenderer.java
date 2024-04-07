@@ -1,7 +1,7 @@
 package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
-import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.custom.EndermanGirlEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -10,22 +10,22 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class CreeperGirlRenderer extends GeoEntityRenderer<CreeperGirlEntity> {
-    public CreeperGirlRenderer(EntityRendererFactory.Context renderManager) {
-        super(renderManager, new CreeperGirlModel());
+public class EndermanGirlRenderer extends GeoEntityRenderer<EndermanGirlEntity> {
+    public EndermanGirlRenderer(EntityRendererFactory.Context renderManager) {
+        super(renderManager, new EndermanGirlModel());
         this.shadowRadius = 0.4f;
     }
 
     @Override
-    public Identifier getTextureResource(CreeperGirlEntity instance) {
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png");
+    public Identifier getTextureResource(EndermanGirlEntity instance) {
+        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/endermangirl.png");
     }
 
     @Override
-    public RenderLayer getRenderType(CreeperGirlEntity animatable, float partialTick, MatrixStack stack,
+    public RenderLayer getRenderType(EndermanGirlEntity animatable, float partialTick, MatrixStack stack,
                                      VertexConsumerProvider bufferSource, VertexConsumer buffer,
                                      int packedLight, Identifier texture) {
-        stack.scale(0.65f, 0.65f, 0.65f);
+        stack.scale(0.6f, 0.6f, 0.6f);
 
         return super.getRenderType(animatable, partialTick, stack, bufferSource, buffer, packedLight, texture);
     }

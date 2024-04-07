@@ -2564,7 +2564,7 @@
 			"animation_length": 0.375,
 			"bones": {
 				"Root": {
-					"position": [0, 0, 4]
+					"position": [0, 0, 3]
 				},
 				"UpBody": {
 					"rotation": [15, 0, 0]
@@ -2909,7 +2909,7 @@
 			"animation_length": 0.375,
 			"bones": {
 				"Root": {
-					"position": [0, 0, 4]
+					"position": [0, 0, 2]
 				},
 				"UpBody": {
 					"rotation": [-7.5, 0, 0]
