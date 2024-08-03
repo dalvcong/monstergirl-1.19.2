@@ -1,6 +1,5 @@
 package dalvcong.monstergirl.entity.client;
 
-import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.EndermanGirlEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -16,10 +15,7 @@ public class EndermanGirlRenderer extends GeoEntityRenderer<EndermanGirlEntity> 
         this.shadowRadius = 0.4f;
     }
 
-    @Override
-    public Identifier getTextureResource(EndermanGirlEntity instance) {
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/endermangirl.png");
-    }
+
 
     @Override
     public RenderLayer getRenderType(EndermanGirlEntity animatable, float partialTick, MatrixStack stack,

@@ -1,6 +1,5 @@
 package dalvcong.monstergirl.entity.client;
 
-import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -14,12 +13,12 @@ public class CreeperGirlRenderer extends GeoEntityRenderer<CreeperGirlEntity> {
     public CreeperGirlRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new CreeperGirlModel());
         this.shadowRadius = 0.4f;
+
+
+        //this.addLayer(new CreeperGirlaRenderer(this));
     }
 
-    @Override
-    public Identifier getTextureResource(CreeperGirlEntity instance) {
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png");
-    }
+
 
     @Override
     public RenderLayer getRenderType(CreeperGirlEntity animatable, float partialTick, MatrixStack stack,
@@ -29,4 +28,6 @@ public class CreeperGirlRenderer extends GeoEntityRenderer<CreeperGirlEntity> {
 
         return super.getRenderType(animatable, partialTick, stack, bufferSource, buffer, packedLight, texture);
     }
+
+
 }

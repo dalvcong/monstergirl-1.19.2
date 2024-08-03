@@ -1,6 +1,5 @@
 package dalvcong.monstergirl.entity.client;
 
-import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.SkeletonGirlEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -16,10 +15,7 @@ public class SkeletonGirlRenderer extends GeoEntityRenderer<SkeletonGirlEntity> 
         this.shadowRadius = 0.4f;
     }
 
-    @Override
-    public Identifier getTextureResource(SkeletonGirlEntity instance) {
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/skeletongirl.png");
-    }
+
 
     @Override
     public RenderLayer getRenderType(SkeletonGirlEntity animatable, float partialTick, MatrixStack stack,
