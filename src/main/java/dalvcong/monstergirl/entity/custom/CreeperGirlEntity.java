@@ -1,6 +1,7 @@
 package dalvcong.monstergirl.entity.custom;
 
 import dalvcong.monstergirl.item.ModItems;
+import dalvcong.monstergirl.screen.MonsterGirlScreenHandlerFactory;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
@@ -10,10 +11,10 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -30,6 +31,8 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
+    private final SimpleInventory inventory = new SimpleInventory(1);
+
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public CreeperGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -41,6 +44,7 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D);
     }
+
 
 
     @Override
@@ -63,7 +67,7 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
         }
     }
 
-    
+
 
     @Override
     public void registerControllers(AnimationData animationData) {
@@ -127,15 +131,12 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
                 ActionResult actionResult = super.interactMob(player, hand);
                 if (!actionResult.isAccepted() && this.isOwner(player)) {
-                    if (this.isSitting()) {
-                        this.setSitting(false);
-                        player.sendMessage(Text.literal("跟随模式"),true);
-                    } else {
-                        this.setSitting(true);
-                        player.sendMessage(Text.literal("待机模式"),true);
-                    }
+
+                    player.openHandledScreen(new MonsterGirlScreenHandlerFactory(this));
                     return ActionResult.SUCCESS;
                 }
+
+
                 return actionResult;
 
             } else if (itemStack.isOf(ModItems.HAOGANJIEJING)) {
@@ -158,6 +159,12 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
         }
 
     }
+
+
+    public SimpleInventory getInventory() {
+        return this.inventory;
+    }
+
 
     @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
