@@ -7,6 +7,9 @@ import dalvcong.monstergirl.entity.custom.EndermanGirlEntity;
 import dalvcong.monstergirl.entity.custom.SkeletonGirlEntity;
 import dalvcong.monstergirl.entity.custom.ZombieGirlEntity;
 import dalvcong.monstergirl.item.ModItems;
+import dalvcong.monstergirl.screen.ModScreenHandlers;
+import dalvcong.monstergirl.screen.MonsterGirlScreen;
+import dalvcong.monstergirl.screen.MonsterGirlScreenHandler;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -30,5 +33,7 @@ public class MonsterGirl implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.ENDERMANGIRL, EndermanGirlEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.ZOMBIEGIRL, ZombieGirlEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.SKELETONGIRL, SkeletonGirlEntity.setAttributes());
+
+		ModScreenHandlers.setMonsterGirlScreenHandles();
 	}
 }

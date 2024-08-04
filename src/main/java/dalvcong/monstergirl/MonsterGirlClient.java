@@ -5,8 +5,11 @@ import dalvcong.monstergirl.entity.client.CreeperGirlRenderer;
 import dalvcong.monstergirl.entity.client.EndermanGirlRenderer;
 import dalvcong.monstergirl.entity.client.SkeletonGirlRenderer;
 import dalvcong.monstergirl.entity.client.ZombieGirlRenderer;
+import dalvcong.monstergirl.screen.ModScreenHandlers;
+import dalvcong.monstergirl.screen.MonsterGirlScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 
 public class MonsterGirlClient implements ClientModInitializer {
     @Override
@@ -16,6 +19,8 @@ public class MonsterGirlClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ENDERMANGIRL, EndermanGirlRenderer::new);
         EntityRendererRegistry.register(ModEntities.ZOMBIEGIRL, ZombieGirlRenderer::new);
         EntityRendererRegistry.register(ModEntities.SKELETONGIRL, SkeletonGirlRenderer::new);
+
+        HandledScreens.register(ModScreenHandlers.MONSTER_GIRL_SCREEN_HANDLES, MonsterGirlScreen::new);
 
 
     }
