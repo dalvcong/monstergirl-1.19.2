@@ -13,5 +13,7 @@
   "entity.monstergirl.creepergirl": "creeper girl",
   "entity.monstergirl.endermangirl": "enderman girl",
   "entity.monstergirl.zombiegirl": "zombie girl",
-  "entity.monstergirl.skeletongirl": "skeleton girl"
+  "entity.monstergirl.skeletongirl": "skeleton girl",
+
+  "container.monstergirl.monster_girl": "Little Maid"
 }

@@ -12,7 +12,7 @@ import net.minecraft.text.Text;
 
 public class MonsterGirlScreenHandler extends ScreenHandler {
 
-    public static final Text TITLE = Text.translatable("container.monstergirl.menu");
+    public static final Text TITLE = Text.translatable("container.monstergirl.monster_girl");
 
     private final CreeperGirlEntity maid;
 
