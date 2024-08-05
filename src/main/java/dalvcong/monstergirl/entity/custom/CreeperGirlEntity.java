@@ -14,6 +14,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -31,7 +34,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
-    private final SimpleInventory inventory = new SimpleInventory(1);
+    private final SimpleInventory inventory = new SimpleInventory(15);
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public CreeperGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
@@ -163,6 +166,37 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
     public SimpleInventory getInventory() {
         return this.inventory;
+    }
+
+
+
+    private static final String KET_SLOT = "Slot";
+    private static final String KEY_INVENTORY = "Inventory";
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        NbtList inventoryNbt = new NbtList();
+        for (int i = 0; i < this.inventory.size(); i++) {
+            ItemStack itemStack = this.inventory.getStack(i);
+
+            if (!itemStack.isEmpty()) {
+                NbtCompound nbtCompound = new NbtCompound();
+                nbtCompound.putInt(CreeperGirlEntity.KET_SLOT, i);
+                itemStack.writeNbt(nbtCompound);
+                inventoryNbt.add(nbtCompound);
+
+            }
+        }
+        nbt.put(CreeperGirlEntity.KEY_INVENTORY, inventoryNbt);
+    }
+
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        NbtList inventoryNbt = nbt.getList(CreeperGirlEntity.KEY_INVENTORY, NbtElement.COMPOUND_TYPE);
+        for (int i = 0; i < inventoryNbt.size(); i++) {
+            NbtCompound nbtCompound = inventoryNbt.getCompound(i);
+            this.inventory.setStack(nbtCompound.getInt("Slot"), ItemStack.fromNbt(nbtCompound));
+        }
     }
 
 
