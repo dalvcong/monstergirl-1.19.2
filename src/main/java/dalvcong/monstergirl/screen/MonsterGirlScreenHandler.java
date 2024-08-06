@@ -4,7 +4,6 @@ import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
@@ -25,15 +24,10 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.MONSTER_GIRL_SCREEN_HANDLES, syncId);
         this.maid = maid;
 
-        this.addSlot(this.new MaidHeldItemSlot(8, 18));
 
-        Inventory maidInventory = this.maid.getInventory();
-        int size = maidInventory.size(); // 15
-        for (int i = 0; i < 3 && (i + 1) * 5 <= size; i++) {
-            for (int j = 0; j < 5 && i * 5 + j + 1 <= size; j++) {
-                this.addSlot(new Slot(maidInventory, i * 5 + j, 80 + j * 18, 18 + i * 18));
-            }
-        }
+        Inventory inventory = this.maid.getInventory();
+        this.addSlot(new Slot(inventory, 0, 8, 18));
+
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -48,21 +42,18 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
-            ItemStack ItemStack2 = slot.getStack();
-            itemStack = ItemStack2.copy();
+            ItemStack itemStack2 = slot.getStack();
+            itemStack = itemStack2.copy();
             int size = this.maid.getInventory().size();
 
-            if (index >= 0 && index < 3 + size) {
-                if (!this.insertItem(ItemStack2, 3 + size, 39 + size, false)) return ItemStack.EMPTY;
-            } else if (index >= 3 + size && index < 39 + size) {
-                if (!this.insertItem(ItemStack2, 1, 2, false)) {
-                    if (!this.insertItem(ItemStack2, 2, 3, false)) {
-                        if (!this.insertItem(ItemStack2, 3, 3 + size, false)) return ItemStack.EMPTY;
-                    }
-                }
+            if (index == 0 ) {
+                if (!this.insertItem(itemStack2, 1, size, false))
+                    return ItemStack.EMPTY;
+            } else if (!this.insertItem(itemStack2, 0, 1, false)) {
+                return ItemStack.EMPTY;
             }
 
-            if (ItemStack2.isEmpty()) {
+            if (itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
             } else {
                 slot.markDirty();
@@ -77,17 +68,7 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
         return this.maid.getInventory().canPlayerUse(player) && this.maid.isAlive() && this.maid.distanceTo(player) < 8.0f;
     }
 
-    public CreeperGirlEntity getMain() {
-        return this.maid;
-    }
 
-    private class MaidHeldItemSlot extends Slot {
-        public MaidHeldItemSlot(int x, int y) {
-            super(new SimpleInventory(1), 0, x, y);
-
-            this.setStack(MonsterGirlScreenHandler.this.getMain().getMainHandStack());
-        }
-    }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {

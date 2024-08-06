@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.server.ServerConfigHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -31,6 +32,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
+
+import java.util.UUID;
 
 public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
@@ -188,6 +191,11 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
             }
         }
         nbt.put(CreeperGirlEntity.KEY_INVENTORY, inventoryNbt);
+
+        nbt.putBoolean("Tame", this.isTamed());
+        if (this.getOwnerUuid() != null) {
+            nbt.putUuid("Owner", this.getOwnerUuid());
+        }
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -196,6 +204,18 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
         for (int i = 0; i < inventoryNbt.size(); i++) {
             NbtCompound nbtCompound = inventoryNbt.getCompound(i);
             this.inventory.setStack(nbtCompound.getInt("Slot"), ItemStack.fromNbt(nbtCompound));
+        }
+        this.setTamed(nbt.getBoolean("Tame"));
+        UUID uUID;
+        if (nbt.containsUuid("Owner")) {
+            uUID = nbt.getUuid("Owner");
+        } else {
+            String string = nbt.getString("Owner");
+            uUID = ServerConfigHandler.getPlayerUuidByName(this.getServer(), string);
+        }
+
+        if (uUID != null) {
+            this.setOwnerUuid(uUID);
         }
     }
 
