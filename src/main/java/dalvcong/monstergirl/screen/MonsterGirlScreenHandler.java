@@ -1,6 +1,7 @@
 package dalvcong.monstergirl.screen;
 
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.util.ModTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.text.Text;
 
 public class MonsterGirlScreenHandler extends ScreenHandler {
@@ -24,9 +26,12 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.MONSTER_GIRL_SCREEN_HANDLES, syncId);
         this.maid = maid;
 
-
         Inventory inventory = this.maid.getInventory();
-        this.addSlot(new Slot(inventory, 0, 8, 18));
+        this.addSlot(new Slot(inventory, 0, 14, 18) {
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModTags.Items.MONSTERGIRL_CLOTHES);
+            }
+        });
 
 
         addPlayerInventory(playerInventory);
@@ -44,10 +49,9 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
         if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
-            int size = this.maid.getInventory().size();
 
             if (index == 0 ) {
-                if (!this.insertItem(itemStack2, 1, size, false))
+                if (!this.insertItem(itemStack2, 1, 37, false))
                     return ItemStack.EMPTY;
             } else if (!this.insertItem(itemStack2, 0, 1, false)) {
                 return ItemStack.EMPTY;
@@ -73,14 +77,14 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0;l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
     }
 }

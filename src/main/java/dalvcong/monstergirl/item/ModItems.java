@@ -5,12 +5,16 @@ import dalvcong.monstergirl.entity.ModEntities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.TallBlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
 
     public static final Item HAOGANJIEJING = regisierItem("haoganjiejing",
+            new Item(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
+
+    public static final Item CLOTHES = regisierItem("clothes",
             new Item(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
 
     public static final Item CREEPERGIRL_SPAWN_EGG = regisierItem("creepergirl_spawn_egg",

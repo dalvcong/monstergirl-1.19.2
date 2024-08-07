@@ -11,16 +11,20 @@ import net.minecraft.util.Identifier;
 
 public class MonsterGirlScreen extends HandledScreen<MonsterGirlScreenHandler> {
     private static final Identifier TEXTURE =
-            new Identifier(MonsterGirl.MOD_ID, "textures/gui/example.png");
+            new Identifier(MonsterGirl.MOD_ID, "textures/gui/monster_girl.png");
 
     public MonsterGirlScreen(MonsterGirlScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
+
+        this.passEvents = false;
+        this.backgroundHeight = 168;
+        this.playerInventoryTitleY = backgroundHeight - 94;
     }
 
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        titleX = 34;
 
     }
 
