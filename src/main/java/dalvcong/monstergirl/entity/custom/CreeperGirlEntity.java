@@ -15,10 +15,10 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.server.ServerConfigHandler;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -37,7 +37,8 @@ import java.util.UUID;
 
 public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
-    private final SimpleInventory inventory = new SimpleInventory(15);
+    private final SimpleInventory inventory = new SimpleInventory(1);
+    //gui相关
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public CreeperGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
@@ -57,7 +58,7 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(3, new SitGoal(this));
-        this.goalSelector.add(4, new FollowOwnerGoal(this, 1.05, 8.0F, 2.0F, false));
+        this.goalSelector.add(4, new FollowOwnerGoal(this, 1.05, 7.0F, 2.0F, false));//跟随模式下怪物娘可能会跑出gui的识别范围，问题不大
         this.goalSelector.add(5, new WanderAroundGoal(this, 1D));
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 5.0F));
         this.goalSelector.add(2, new LookAroundGoal(this));
@@ -137,11 +138,19 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
                 ActionResult actionResult = super.interactMob(player, hand);
                 if (!actionResult.isAccepted() && this.isOwner(player)) {
-
-                    player.openHandledScreen(new MonsterGirlScreenHandlerFactory(this));
+                    if (player.isSneaking()) {
+                        player.openHandledScreen(new MonsterGirlScreenHandlerFactory(this));
+                    } else {
+                    if (this.isSitting()) {
+                        this.setSitting(false);
+                        player.sendMessage(Text.literal("跟随模式"),true);
+                    } else {
+                        this.setSitting(true);
+                        player.sendMessage(Text.literal("待机模式"),true);
+                    }
+                    }
                     return ActionResult.SUCCESS;
                 }
-
 
                 return actionResult;
 
@@ -169,13 +178,10 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
     public SimpleInventory getInventory() {
         return this.inventory;
-    }
+    }//gui相关
 
 
-
-    private static final String KET_SLOT = "Slot";
-    private static final String KEY_INVENTORY = "Inventory";
-
+    //读写nbt
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         NbtList inventoryNbt = new NbtList();
@@ -184,13 +190,13 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
             if (!itemStack.isEmpty()) {
                 NbtCompound nbtCompound = new NbtCompound();
-                nbtCompound.putInt(CreeperGirlEntity.KET_SLOT, i);
+                nbtCompound.putInt("Slot", i);
                 itemStack.writeNbt(nbtCompound);
                 inventoryNbt.add(nbtCompound);
 
             }
         }
-        nbt.put(CreeperGirlEntity.KEY_INVENTORY, inventoryNbt);
+        nbt.put("Inventory", inventoryNbt);
 
         nbt.putBoolean("Tame", this.isTamed());
         if (this.getOwnerUuid() != null) {
@@ -200,7 +206,7 @@ public class CreeperGirlEntity extends TameableEntity implements IAnimatable {
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        NbtList inventoryNbt = nbt.getList(CreeperGirlEntity.KEY_INVENTORY, NbtElement.COMPOUND_TYPE);
+        NbtList inventoryNbt = nbt.getList("Inventory", 10);
         for (int i = 0; i < inventoryNbt.size(); i++) {
             NbtCompound nbtCompound = inventoryNbt.getCompound(i);
             this.inventory.setStack(nbtCompound.getInt("Slot"), ItemStack.fromNbt(nbtCompound));

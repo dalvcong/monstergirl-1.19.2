@@ -9,14 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.text.Text;
 
 public class MonsterGirlScreenHandler extends ScreenHandler {
 
     public static final Text TITLE = Text.translatable("container.monstergirl.monster_girl");
 
-    private final CreeperGirlEntity maid;
+    private final CreeperGirlEntity creeperGirlEntity;
 
     public MonsterGirlScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf packet) {
         this(syncId, inventory, (CreeperGirlEntity) inventory.player.getWorld().getEntityById(packet.readInt()));
@@ -24,9 +23,9 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
 
     public MonsterGirlScreenHandler(int syncId, PlayerInventory playerInventory, CreeperGirlEntity maid) {
         super(ModScreenHandlers.MONSTER_GIRL_SCREEN_HANDLES, syncId);
-        this.maid = maid;
+        this.creeperGirlEntity = maid;
 
-        Inventory inventory = this.maid.getInventory();
+        Inventory inventory = this.creeperGirlEntity.getInventory();
         this.addSlot(new Slot(inventory, 0, 14, 18) {
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModTags.Items.MONSTERGIRL_CLOTHES);
@@ -69,7 +68,11 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return this.maid.getInventory().canPlayerUse(player) && this.maid.isAlive() && this.maid.distanceTo(player) < 8.0f;
+        return this.creeperGirlEntity.getInventory().canPlayerUse(player) && this.creeperGirlEntity.isAlive() && this.creeperGirlEntity.distanceTo(player) < 8.0f;
+    }
+
+    public CreeperGirlEntity getCreeperGirlEntity() {
+        return this.creeperGirlEntity;
     }
 
 

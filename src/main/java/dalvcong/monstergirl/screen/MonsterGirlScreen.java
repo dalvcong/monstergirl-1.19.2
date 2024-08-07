@@ -2,7 +2,9 @@ package dalvcong.monstergirl.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dalvcong.monstergirl.MonsterGirl;
+import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,6 +14,9 @@ import net.minecraft.util.Identifier;
 public class MonsterGirlScreen extends HandledScreen<MonsterGirlScreenHandler> {
     private static final Identifier TEXTURE =
             new Identifier(MonsterGirl.MOD_ID, "textures/gui/monster_girl.png");
+
+    private float mouseX;
+    private float mouseY;
 
     public MonsterGirlScreen(MonsterGirlScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -37,6 +42,9 @@ public class MonsterGirlScreen extends HandledScreen<MonsterGirlScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
+        CreeperGirlEntity entity = this.getScreenHandler().getCreeperGirlEntity();
+
+        InventoryScreen.drawEntity(x + 52, y + 68, 25, (float)(x + 52) - this.mouseX, (float)(y + 68 - 38) - this.mouseY, entity);
     }
 
     
@@ -44,6 +52,8 @@ public class MonsterGirlScreen extends HandledScreen<MonsterGirlScreenHandler> {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
+        this.mouseX = (float)mouseX;
+        this.mouseY = (float)mouseY;
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
