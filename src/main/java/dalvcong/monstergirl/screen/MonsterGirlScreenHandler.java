@@ -1,6 +1,6 @@
 package dalvcong.monstergirl.screen;
 
-import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.custom.MonsterGirlEntity;
 import dalvcong.monstergirl.util.ModTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,17 +15,17 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
 
     public static final Text TITLE = Text.translatable("container.monstergirl.monster_girl");
 
-    private final CreeperGirlEntity creeperGirlEntity;
+    private final MonsterGirlEntity monsterGirlEntity;
 
     public MonsterGirlScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf packet) {
-        this(syncId, inventory, (CreeperGirlEntity) inventory.player.getWorld().getEntityById(packet.readInt()));
+        this(syncId, inventory, (MonsterGirlEntity) inventory.player.getWorld().getEntityById(packet.readInt()));
     }
 
-    public MonsterGirlScreenHandler(int syncId, PlayerInventory playerInventory, CreeperGirlEntity maid) {
+    public MonsterGirlScreenHandler(int syncId, PlayerInventory playerInventory, MonsterGirlEntity maid) {
         super(ModScreenHandlers.MONSTER_GIRL_SCREEN_HANDLES, syncId);
-        this.creeperGirlEntity = maid;
+        this.monsterGirlEntity = maid;
 
-        Inventory inventory = this.creeperGirlEntity.getInventory();
+        Inventory inventory = this.monsterGirlEntity.getInventory();
         this.addSlot(new Slot(inventory, 0, 14, 18) {
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModTags.Items.MONSTERGIRL_CLOTHES);
@@ -68,11 +68,11 @@ public class MonsterGirlScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return this.creeperGirlEntity.getInventory().canPlayerUse(player) && this.creeperGirlEntity.isAlive() && this.creeperGirlEntity.distanceTo(player) < 8.0f;
+        return this.monsterGirlEntity.getInventory().canPlayerUse(player) && this.monsterGirlEntity.isAlive() && this.monsterGirlEntity.distanceTo(player) < 8.0f;
     }
 
-    public CreeperGirlEntity getCreeperGirlEntity() {
-        return this.creeperGirlEntity;
+    public MonsterGirlEntity getMonsterGirlEntity() {
+        return this.monsterGirlEntity;
     }
 
 

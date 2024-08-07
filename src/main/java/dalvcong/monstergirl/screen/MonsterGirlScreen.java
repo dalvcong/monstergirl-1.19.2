@@ -2,7 +2,7 @@ package dalvcong.monstergirl.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dalvcong.monstergirl.MonsterGirl;
-import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.custom.MonsterGirlEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -42,7 +42,7 @@ public class MonsterGirlScreen extends HandledScreen<MonsterGirlScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        CreeperGirlEntity entity = this.getScreenHandler().getCreeperGirlEntity();
+        MonsterGirlEntity entity = this.getScreenHandler().getMonsterGirlEntity();
 
         InventoryScreen.drawEntity(x + 52, y + 68, 25, (float)(x + 52) - this.mouseX, (float)(y + 68 - 38) - this.mouseY, entity);
     }
