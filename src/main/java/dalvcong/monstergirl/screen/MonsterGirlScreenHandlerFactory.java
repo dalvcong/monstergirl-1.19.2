@@ -27,7 +27,7 @@ public class MonsterGirlScreenHandlerFactory implements ExtendedScreenHandlerFac
 
     @Override
     public Text getDisplayName() {
-        return MonsterGirlScreenHandler.TITLE;
+        return monsterGirlEntity.getName();
     }
 
     @Nullable

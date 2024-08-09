@@ -9,12 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
 
 public class MonsterGirlScreenHandler extends ScreenHandler {
-
-    public static final Text TITLE = Text.translatable("container.monstergirl.monster_girl");
-
+    
     private final MonsterGirlEntity monsterGirlEntity;
 
     public MonsterGirlScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf packet) {

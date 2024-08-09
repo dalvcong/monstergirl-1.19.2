@@ -24,8 +24,8 @@ public class MonsterGirl implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModItems.registerModItems();
 
 		GeckoLib.initialize();
 

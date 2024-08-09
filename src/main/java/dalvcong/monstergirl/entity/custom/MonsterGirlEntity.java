@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.server.ServerConfigHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -22,8 +21,7 @@ import java.util.UUID;
 
 public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
 
-    private final SimpleInventory inventory = new SimpleInventory(1);
-    //gui相关
+    private final SimpleInventory inventory = new SimpleInventory(1);//gui相关
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public MonsterGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
@@ -53,38 +51,31 @@ public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
     }
 
 
-
     @Override
     public void registerControllers(AnimationData animationData) {
 
     }
 
 
-
-
-
     public SimpleInventory getInventory() {
         return this.inventory;
     }//gui相关
+
+    public ItemStack getSlotItem() {
+        return this.inventory.getStack(0);
+    }
+
 
 
     //读写nbt
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        NbtList inventoryNbt = new NbtList();
-        for (int i = 0; i < this.inventory.size(); i++) {
-            ItemStack itemStack = this.inventory.getStack(i);
-
-            if (!itemStack.isEmpty()) {
-                NbtCompound nbtCompound = new NbtCompound();
-                nbtCompound.putInt("Slot", i);
-                itemStack.writeNbt(nbtCompound);
-                inventoryNbt.add(nbtCompound);
-
-            }
+        ItemStack itemStack = this.inventory.getStack(0);
+        if (!itemStack.isEmpty()) {
+            nbt.put("Slot0Item", itemStack.writeNbt(new NbtCompound()));
         }
-        nbt.put("Inventory", inventoryNbt);
 
+        nbt.putBoolean("IsSitting", this.isSitting());
         nbt.putBoolean("Tame", this.isTamed());
         if (this.getOwnerUuid() != null) {
             nbt.putUuid("Owner", this.getOwnerUuid());
@@ -93,10 +84,13 @@ public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        NbtList inventoryNbt = nbt.getList("Inventory", 10);
-        for (int i = 0; i < inventoryNbt.size(); i++) {
-            NbtCompound nbtCompound = inventoryNbt.getCompound(i);
-            this.inventory.setStack(nbtCompound.getInt("Slot"), ItemStack.fromNbt(nbtCompound));
+        if (nbt.contains("Slot0Item", 10)) {
+            ItemStack itemStack = ItemStack.fromNbt(nbt.getCompound("Slot0Item"));
+            this.inventory.setStack(0, itemStack);
+        }
+
+        if (nbt.contains("IsSitting")) {
+            this.setSitting(nbt.getBoolean("IsSitting"));
         }
         this.setTamed(nbt.getBoolean("Tame"));
         UUID uUID;
