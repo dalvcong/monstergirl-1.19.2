@@ -25,10 +25,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class SkeletonGirlEntity extends MonsterGirlEntity implements IAnimatable {
+public class SpiderGirlEntity extends MonsterGirlEntity implements IAnimatable {
 
     private  final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public SkeletonGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
+    public SpiderGirlEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -115,6 +115,7 @@ public class SkeletonGirlEntity extends MonsterGirlEntity implements IAnimatable
                     }
                     return ActionResult.SUCCESS;
                 }
+
                 return actionResult;
 
             } else if (itemStack.isOf(ModItems.HAOGANJIEJING)) {
@@ -138,14 +139,16 @@ public class SkeletonGirlEntity extends MonsterGirlEntity implements IAnimatable
 
     }
 
+
+
     @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        return 1.56f;
+        return 1.44f;
     }
 
     @Override
     public double getHeightOffset() {
-        return -0.58;
+        return -0.49;
     }
 
     @Override

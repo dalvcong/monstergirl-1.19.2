@@ -1,7 +1,7 @@
 package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
-import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.custom.SpiderGirlEntity;
 import dalvcong.monstergirl.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -11,33 +11,33 @@ import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
-public class CreeperGirlModel extends AnimatedGeoModel<CreeperGirlEntity> {
+public class SpiderGirlModel extends AnimatedGeoModel<SpiderGirlEntity> {
     @Override
-    public Identifier getModelResource(CreeperGirlEntity object) {
+    public Identifier getModelResource(SpiderGirlEntity object) {
         ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CREEPERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl_casual.geo.json");
+        if (itemStack.getItem() == ModItems.SPIDERGIRL_CASUAL) {
+            return new Identifier(MonsterGirl.MOD_ID, "geo/spidergirl_casual.geo.json");
         }
-        return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl.geo.json");
+        return new Identifier(MonsterGirl.MOD_ID, "geo/spidergirl.geo.json");
     }
 
     @Override
-    public Identifier getTextureResource(CreeperGirlEntity object) {
+    public Identifier getTextureResource(SpiderGirlEntity object) {
         ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CREEPERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl_casual.png");
+        if (itemStack.getItem() == ModItems.SPIDERGIRL_CASUAL) {
+            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/spidergirl_casual.png");
         }
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png");
+        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/spidergirl.png");
     }
 
     @Override
-    public Identifier getAnimationResource(CreeperGirlEntity animatable) {
-        return new Identifier(MonsterGirl.MOD_ID, "animations/creepergirl.animation.json");
+    public Identifier getAnimationResource(SpiderGirlEntity animatable) {
+        return new Identifier(MonsterGirl.MOD_ID, "animations/spidergirl.animation.json");
     }
 
 
     @Override
-    public void setCustomAnimations(CreeperGirlEntity animatable, int instanceId, AnimationEvent animationEvent) {
+    public void setCustomAnimations(SpiderGirlEntity animatable, int instanceId, AnimationEvent animationEvent) {
         super.setCustomAnimations(animatable, instanceId, animationEvent);
         IBone head = getAnimationProcessor().getBone("headd");
 

@@ -1,10 +1,7 @@
 package dalvcong.monstergirl.entity;
 
 import dalvcong.monstergirl.MonsterGirl;
-import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
-import dalvcong.monstergirl.entity.custom.EndermanGirlEntity;
-import dalvcong.monstergirl.entity.custom.SkeletonGirlEntity;
-import dalvcong.monstergirl.entity.custom.ZombieGirlEntity;
+import dalvcong.monstergirl.entity.custom.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -28,5 +25,13 @@ public class ModEntities {
     public static final EntityType<SkeletonGirlEntity> SKELETONGIRL = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MonsterGirl.MOD_ID, "skeletongirl"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, SkeletonGirlEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.5f, 1.84f)).build());
+                    .dimensions(EntityDimensions.fixed(0.5f, 1.81f)).build());
+    public static final EntityType<SpiderGirlEntity> SPIDERGIRL = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MonsterGirl.MOD_ID, "spidergirl"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, SpiderGirlEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.5f, 1.73f)).build());
+    public static final EntityType<CaveSpiderGirlEntity> CAVESPIDERGIRL = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MonsterGirl.MOD_ID, "cavespidergirl"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CaveSpiderGirlEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.5f, 1.65f)).build());
 }

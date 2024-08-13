@@ -2,6 +2,8 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.ZombieGirlEntity;
+import dalvcong.monstergirl.item.ModItems;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -12,11 +14,19 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class ZombieGirlModel extends AnimatedGeoModel<ZombieGirlEntity> {
     @Override
     public Identifier getModelResource(ZombieGirlEntity object) {
+        ItemStack itemStack = object.getSlotItem();
+        if (itemStack.getItem() == ModItems.ZOMBIEGIRL_CASUAL) {
+            return new Identifier(MonsterGirl.MOD_ID, "geo/zombiegirl_casual.geo.json");
+        }
         return new Identifier(MonsterGirl.MOD_ID, "geo/zombiegirl.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(ZombieGirlEntity object) {
+        ItemStack itemStack = object.getSlotItem();
+        if (itemStack.getItem() == ModItems.ZOMBIEGIRL_CASUAL) {
+            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/zombiegirl_casual.png");
+        }
         return new Identifier(MonsterGirl.MOD_ID, "textures/entity/zombiegirl.png");
     }
 

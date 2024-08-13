@@ -1,7 +1,17 @@
 {
   "item.monstergirl.haoganjiejing": "haoganjiejing",
   "item.monstergirl.creepergirl_casual": "casual",
-  "item.monstergirl.creepergirl_casual.tooltip": "creepergirl",
+  "item.monstergirl.creepergirl_casual.tooltip": "creeper girl",
+  "item.monstergirl.endermangirl_casual": "casual",
+  "item.monstergirl.endermangirl_casual.tooltip": "enderman girl",
+  "item.monstergirl.zombiegirl_casual": "casual",
+  "item.monstergirl.zombiegirl_casual.tooltip": "zombie girl",
+  "item.monstergirl.skeletongirl_casual": "casual",
+  "item.monstergirl.skeletongirl_casual.tooltip": "skeleton girl",
+  "item.monstergirl.spidergirl_casual": "casual",
+  "item.monstergirl.spidergirl_casual.tooltip": "spider girl",
+  "item.monstergirl.cavespidergirl_casual": "casual",
+  "item.monstergirl.cavespidergirl_casual.tooltip": "cave spider girl",
 
   "block.monstergirl.haogankuang": "haogankuang",
 
@@ -11,10 +21,14 @@
   "item.monstergirl.endermangirl_spawn_egg": "enderman girl spawn egg",
   "item.monstergirl.zombiegirl_spawn_egg": "zombie girl spawn egg",
   "item.monstergirl.skeletongirl_spawn_egg": "skeleton girl spawn egg",
+  "item.monstergirl.spidergirl_spawn_egg": "spider girl spawn egg",
+  "item.monstergirl.cavespidergirl_spawn_egg": "cave spider girl spawn egg",
 
   "entity.monstergirl.creepergirl": "creeper girl",
   "entity.monstergirl.endermangirl": "enderman girl",
   "entity.monstergirl.zombiegirl": "zombie girl",
-  "entity.monstergirl.skeletongirl": "skeleton girl"
+  "entity.monstergirl.skeletongirl": "skeleton girl",
+  "entity.monstergirl.spidergirl": "spider girl",
+  "entity.monstergirl.cavespidergirl": "cave spider girl"
 
 }

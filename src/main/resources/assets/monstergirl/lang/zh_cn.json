@@ -2,6 +2,16 @@
   "item.monstergirl.haoganjiejing": "好感结晶",
   "item.monstergirl.creepergirl_casual": "常服",
   "item.monstergirl.creepergirl_casual.tooltip": "苦力怕娘",
+  "item.monstergirl.endermangirl_casual": "常服",
+  "item.monstergirl.endermangirl_casual.tooltip": "末影娘",
+  "item.monstergirl.zombiegirl_casual": "常服",
+  "item.monstergirl.zombiegirl_casual.tooltip": "僵尸娘",
+  "item.monstergirl.skeletongirl_casual": "常服",
+  "item.monstergirl.skeletongirl_casual.tooltip": "骷髅娘",
+  "item.monstergirl.spidergirl_casual": "常服",
+  "item.monstergirl.spidergirl_casual.tooltip": "蜘蛛娘",
+  "item.monstergirl.cavespidergirl_casual": "常服",
+  "item.monstergirl.cavespidergirl_casual.tooltip": "洞穴蜘蛛娘",
 
   "block.monstergirl.haogankuang": "好感矿",
 
@@ -11,9 +21,13 @@
   "item.monstergirl.endermangirl_spawn_egg": "末影娘刷怪蛋",
   "item.monstergirl.zombiegirl_spawn_egg": "僵尸娘刷怪蛋",
   "item.monstergirl.skeletongirl_spawn_egg": "骷髅娘刷怪蛋",
+  "item.monstergirl.spidergirl_spawn_egg": "蜘蛛娘刷怪蛋",
+  "item.monstergirl.cavespidergirl_spawn_egg": "洞穴蜘蛛娘刷怪蛋",
 
   "entity.monstergirl.creepergirl": "苦力怕娘",
   "entity.monstergirl.endermangirl": "末影娘",
   "entity.monstergirl.zombiegirl": "僵尸娘",
-  "entity.monstergirl.skeletongirl": "骷髅娘"
+  "entity.monstergirl.skeletongirl": "骷髅娘",
+  "entity.monstergirl.spidergirl": "蜘蛛娘",
+  "entity.monstergirl.cavespidergirl": "洞穴蜘蛛娘"
 }

@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "monstergirl:creepergirl_casual"
+    "monstergirl:creepergirl_casual",
+    "monstergirl:endermangirl_casual",
+    "monstergirl:zombiegirl_casual",
+    "monstergirl:skeletongirl_casual",
+    "monstergirl:spidergirl_casual",
+    "monstergirl:cavespidergirl_casual"
   ]
 }
