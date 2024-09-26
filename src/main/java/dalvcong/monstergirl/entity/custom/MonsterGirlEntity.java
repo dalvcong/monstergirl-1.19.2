@@ -83,7 +83,7 @@ public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+        super.readCustomDataFromNbt(nbt);
         if (nbt.contains("Slot0Item", 10)) {
             ItemStack itemStack = ItemStack.fromNbt(nbt.getCompound("Slot0Item"));
             this.inventory.setStack(0, itemStack);
