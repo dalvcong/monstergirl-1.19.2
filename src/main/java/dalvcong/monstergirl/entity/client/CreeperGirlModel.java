@@ -2,6 +2,7 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
+import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
 import dalvcong.monstergirl.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -23,11 +24,7 @@ public class CreeperGirlModel extends AnimatedGeoModel<CreeperGirlEntity> {
 
     @Override
     public Identifier getTextureResource(CreeperGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CREEPERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl_casual.png");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png");
+        return CreeperGirlRenderer.TEXTURE.get(object.getTexture());
     }
 
     @Override
