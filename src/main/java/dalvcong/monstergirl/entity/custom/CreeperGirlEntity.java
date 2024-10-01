@@ -2,6 +2,7 @@ package dalvcong.monstergirl.entity.custom;
 
 import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
 import dalvcong.monstergirl.item.ModItems;
+import dalvcong.monstergirl.item.custom.MonsterGirlClothes;
 import dalvcong.monstergirl.screen.MonsterGirlScreenHandlerFactory;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -17,11 +18,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -86,12 +83,11 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putInt("Variant", this.getVariant());
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(VARIANT, nbt.getInt("Variant"));
+        this.updateClothes();
     }
 
 
@@ -177,29 +173,35 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(VARIANT, 0);
-    }//枚举材质
+    }//初始化材质
 
     private static final TrackedData<Integer> VARIANT =
             DataTracker.registerData(CreeperGirlEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    //追踪材质（应该是这么叫的）
 
-    @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
-                                 SpawnReason spawnReason, @Nullable EntityData entityData,
-                                 @Nullable NbtCompound nbt) {
-        CreeperGirlTexture texture = Util.getRandom(CreeperGirlTexture.values(), this.random);
-        setVariant(texture);
-        return super.initialize(world, difficulty, spawnReason, entityData, nbt);
-    }
 
     public CreeperGirlTexture getTexture() {
-        return CreeperGirlTexture.byIndex(this.getVariant() & 255);
-    }
+        return CreeperGirlTexture.byIndex(this.getVariant());
+    }//获得材质，作用于Model和Renderer
 
     private int getVariant() {
         return this.dataTracker.get(VARIANT);
-    }
+    }//获取材质
 
     private void setVariant(CreeperGirlTexture texture) {
-        this.dataTracker.set(VARIANT,texture.getIndex() & 255);
-    }
+        this.dataTracker.set(VARIANT,texture.getIndex());
+    }//赋予材质
+
+    protected void updateClothes() {
+        if (!this.world.isClient) {
+
+            this.setVariant(getColorFromItem(this.getSlotItem()));
+        }
+    }//更新材质，抄的羊驼的更新地毯装饰的方法
+
+    private static CreeperGirlTexture getColorFromItem(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        return item instanceof MonsterGirlClothes ? ((MonsterGirlClothes) item).getTexture() : CreeperGirlTexture.NUDE;
+    }//检测实体当前物品的材质，当实体物品栏的物品是MonsterGirlClothes时就赋予服装的材质，如果不是就返回默认材质
+
 }

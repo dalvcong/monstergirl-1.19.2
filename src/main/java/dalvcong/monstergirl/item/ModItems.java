@@ -2,6 +2,7 @@ package dalvcong.monstergirl.item;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.ModEntities;
+import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
 import dalvcong.monstergirl.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
@@ -15,7 +16,7 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
 
     public static final Item CREEPERGIRL_CASUAL = regisierItem("creepergirl_casual",
-            new CreeperGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new CreeperGirlCasual(CreeperGirlTexture.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item ENDERMANGIRL_CASUAL = regisierItem("endermangirl_casual",
             new EndermanGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));

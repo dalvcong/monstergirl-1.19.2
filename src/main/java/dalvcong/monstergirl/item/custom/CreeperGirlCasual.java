@@ -1,7 +1,7 @@
 package dalvcong.monstergirl.item.custom;
 
+import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -10,9 +10,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CreeperGirlCasual extends Item {
-    public CreeperGirlCasual(Settings settings) {
-        super(settings);
+public class CreeperGirlCasual extends MonsterGirlClothes {
+    public CreeperGirlCasual(CreeperGirlTexture texture, Settings settings) {
+        super(texture, settings);
     }
 
     @Override

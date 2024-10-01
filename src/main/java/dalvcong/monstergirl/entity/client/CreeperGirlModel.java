@@ -2,9 +2,6 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
-import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
-import dalvcong.monstergirl.item.ModItems;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -15,10 +12,6 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class CreeperGirlModel extends AnimatedGeoModel<CreeperGirlEntity> {
     @Override
     public Identifier getModelResource(CreeperGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CREEPERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl_casual.geo.json");
-        }
         return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl.geo.json");
     }
 
