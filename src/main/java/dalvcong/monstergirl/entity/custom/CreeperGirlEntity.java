@@ -44,6 +44,16 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D);
     }
 
+    public void mobTick() {
+        super.mobTick();
+        if (!this.world.isClient) {
+            for (PlayerEntity player : this.world.getPlayers()) {
+                player.sendMessage(Text.literal(String.valueOf(this.getVariant())));
+            }
+            this.updateClothes();
+        }
+    }
+
 
     @Override
     public void registerControllers(AnimationData animationData) {
