@@ -1,15 +1,10 @@
 package dalvcong.monstergirl.entity.custom;
 
-import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
 import dalvcong.monstergirl.item.ModItems;
-import dalvcong.monstergirl.item.custom.MonsterGirlClothes;
 import dalvcong.monstergirl.screen.MonsterGirlScreenHandlerFactory;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -81,15 +76,6 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
         return PlayState.CONTINUE;
     }
 
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-    }
-
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.updateClothes();
-    }
-
 
 
     @Override
@@ -122,9 +108,11 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
                         if (this.isSitting()) {
                             this.setSitting(false);
                             player.sendMessage(Text.literal("跟随模式"),true);
+                            this.updateClothes();
                         } else {
                             this.setSitting(true);
                             player.sendMessage(Text.literal("待机模式"),true);
+                            this.updateClothes();
                         }
                     }
                     return ActionResult.SUCCESS;
@@ -170,38 +158,5 @@ public class CreeperGirlEntity extends MonsterGirlEntity implements IAnimatable 
         return factory;
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, 0);
-    }//初始化材质
-
-    private static final TrackedData<Integer> VARIANT =
-            DataTracker.registerData(CreeperGirlEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    //追踪材质（应该是这么叫的）
-
-
-    public CreeperGirlTexture getTexture() {
-        return CreeperGirlTexture.byIndex(this.getVariant());
-    }//获得材质，作用于Model和Renderer
-
-    private int getVariant() {
-        return this.dataTracker.get(VARIANT);
-    }//获取材质
-
-    private void setVariant(CreeperGirlTexture texture) {
-        this.dataTracker.set(VARIANT,texture.getIndex());
-    }//赋予材质
-
-    protected void updateClothes() {
-        if (!this.world.isClient) {
-
-            this.setVariant(getColorFromItem(this.getSlotItem()));
-        }
-    }//更新材质，抄的羊驼的更新地毯装饰的方法
-
-    private static CreeperGirlTexture getColorFromItem(ItemStack itemStack) {
-        Item item = itemStack.getItem();
-        return item instanceof MonsterGirlClothes ? ((MonsterGirlClothes) item).getTexture() : CreeperGirlTexture.NUDE;
-    }//检测实体当前物品的材质，当实体物品栏的物品是MonsterGirlClothes时就赋予服装的材质，如果不是就返回默认材质
 
 }

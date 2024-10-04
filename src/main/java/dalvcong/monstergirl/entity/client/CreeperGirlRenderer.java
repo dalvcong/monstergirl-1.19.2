@@ -3,7 +3,7 @@ package dalvcong.monstergirl.entity.client;
 import com.google.common.collect.Maps;
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.CreeperGirlEntity;
-import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
+import dalvcong.monstergirl.entity.variant.ClothesType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -17,11 +17,17 @@ import java.util.Map;
 
 public class CreeperGirlRenderer extends GeoEntityRenderer<CreeperGirlEntity> {
 
-    public static final Map<CreeperGirlTexture, Identifier> TEXTURE =
-        Util.make(Maps.newEnumMap(CreeperGirlTexture.class), (map) -> {
-            map.put(CreeperGirlTexture.NUDE, new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png"));
-            map.put(CreeperGirlTexture.CASUAL, new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl_casual.png"));
+    public static final Map<ClothesType, Identifier> TEXTURE =
+        Util.make(Maps.newEnumMap(ClothesType.class), (map) -> {
+            map.put(ClothesType.NUDE, new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl.png"));
+            map.put(ClothesType.CASUAL, new Identifier(MonsterGirl.MOD_ID, "textures/entity/creepergirl_casual.png"));
         });
+
+    public static final Map<ClothesType, Identifier> MODEL =
+            Util.make(Maps.newEnumMap(ClothesType.class), (map) -> {
+                map.put(ClothesType.NUDE, new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl.geo.json"));
+                map.put(ClothesType.CASUAL, new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl_casual.geo.json"));
+            });
 
     public CreeperGirlRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new CreeperGirlModel());
@@ -33,9 +39,8 @@ public class CreeperGirlRenderer extends GeoEntityRenderer<CreeperGirlEntity> {
 
     @Override
     public Identifier getTexture(CreeperGirlEntity entity) {
-        return TEXTURE.get(entity.getTexture());
-    }
-
+        return TEXTURE.get(entity.getClothesType());
+    }//没搞懂这个方法的用法，好像删去也没问题
 
 
     @Override

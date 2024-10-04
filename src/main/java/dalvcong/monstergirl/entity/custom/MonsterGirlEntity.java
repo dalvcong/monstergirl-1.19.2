@@ -1,11 +1,17 @@
 package dalvcong.monstergirl.entity.custom;
 
+import dalvcong.monstergirl.entity.variant.ClothesType;
+import dalvcong.monstergirl.item.custom.MonsterGirlClothes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.ServerConfigHandler;
@@ -104,6 +110,8 @@ public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
         if (uUID != null) {
             this.setOwnerUuid(uUID);
         }
+
+        this.updateClothes();
     }
 
 
@@ -118,4 +126,39 @@ public class MonsterGirlEntity extends TameableEntity implements IAnimatable {
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return null;
     }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(VARIANT, 0);
+    }//初始化材质
+
+    private static final TrackedData<Integer> VARIANT =
+            DataTracker.registerData(MonsterGirlEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    //追踪材质（应该是这么叫的）
+
+
+    public ClothesType getClothesType() {
+        return ClothesType.byIndex(this.getVariant());
+    }//获得材质，作用于Model和Renderer
+
+    public int getVariant() {
+        return this.dataTracker.get(VARIANT);
+    }//获取材质
+
+    private void setVariant(ClothesType texture) {
+        this.dataTracker.set(VARIANT,texture.getIndex());
+    }//赋予材质
+
+    protected void updateClothes() {
+        if (!this.world.isClient) {
+
+            this.setVariant(getColorFromItem(this.getSlotItem()));
+        }
+    }//更新材质，抄的羊驼的更新地毯装饰的方法
+
+    private static ClothesType getColorFromItem(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        return item instanceof MonsterGirlClothes ? ((MonsterGirlClothes) item).getType() : ClothesType.NUDE;
+    }//检测实体当前物品的材质，当实体物品栏的物品是MonsterGirlClothes时就赋予服装的材质，如果不是就返回默认材质
 }

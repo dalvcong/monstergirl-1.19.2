@@ -1,5 +1,6 @@
 package dalvcong.monstergirl.item.custom;
 
+import dalvcong.monstergirl.entity.variant.ClothesType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,9 +11,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EndermanGirlCasual extends Item {
-    public EndermanGirlCasual(Settings settings) {
-        super(settings);
+public class EndermanGirlCasual extends MonsterGirlClothes {
+    public EndermanGirlCasual(ClothesType texture, Settings settings) {
+        super(texture, settings);
     }
 
     @Override

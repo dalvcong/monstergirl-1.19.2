@@ -2,8 +2,6 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.CaveSpiderGirlEntity;
-import dalvcong.monstergirl.item.ModItems;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -14,20 +12,12 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class CaveSpiderGirlModel extends AnimatedGeoModel<CaveSpiderGirlEntity> {
     @Override
     public Identifier getModelResource(CaveSpiderGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CAVESPIDERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "geo/cavespidergirl_casual.geo.json");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "geo/cavespidergirl.geo.json");
+        return CaveSpiderGirlRenderer.MODEL.get(object.getClothesType());
     }
 
     @Override
     public Identifier getTextureResource(CaveSpiderGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.CAVESPIDERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/cavespidergirl_casual.png");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/cavespidergirl.png");
+        return CaveSpiderGirlRenderer.TEXTURE.get(object.getClothesType());
     }
 
     @Override

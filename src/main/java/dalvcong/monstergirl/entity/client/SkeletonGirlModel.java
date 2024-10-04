@@ -2,8 +2,6 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.SkeletonGirlEntity;
-import dalvcong.monstergirl.item.ModItems;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -14,20 +12,12 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class SkeletonGirlModel extends AnimatedGeoModel<SkeletonGirlEntity> {
     @Override
     public Identifier getModelResource(SkeletonGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.SKELETONGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "geo/skeletongirl_casual.geo.json");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "geo/skeletongirl.geo.json");
+        return SkeletonGirlRenderer.MODEL.get(object.getClothesType());
     }
 
     @Override
     public Identifier getTextureResource(SkeletonGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.SKELETONGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/skeletongirl_casual.png");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/skeletongirl.png");
+        return SkeletonGirlRenderer.TEXTURE.get(object.getClothesType());
     }
 
     @Override

@@ -2,8 +2,6 @@ package dalvcong.monstergirl.entity.client;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.custom.SpiderGirlEntity;
-import dalvcong.monstergirl.item.ModItems;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -14,20 +12,12 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class SpiderGirlModel extends AnimatedGeoModel<SpiderGirlEntity> {
     @Override
     public Identifier getModelResource(SpiderGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.SPIDERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "geo/spidergirl_casual.geo.json");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "geo/spidergirl.geo.json");
+        return SpiderGirlRenderer.MODEL.get(object.getClothesType());
     }
 
     @Override
     public Identifier getTextureResource(SpiderGirlEntity object) {
-        ItemStack itemStack = object.getSlotItem();
-        if (itemStack.getItem() == ModItems.SPIDERGIRL_CASUAL) {
-            return new Identifier(MonsterGirl.MOD_ID, "textures/entity/spidergirl_casual.png");
-        }
-        return new Identifier(MonsterGirl.MOD_ID, "textures/entity/spidergirl.png");
+        return SpiderGirlRenderer.TEXTURE.get(object.getClothesType());
     }
 
     @Override

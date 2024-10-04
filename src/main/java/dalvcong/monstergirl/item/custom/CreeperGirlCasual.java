@@ -1,6 +1,6 @@
 package dalvcong.monstergirl.item.custom;
 
-import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
+import dalvcong.monstergirl.entity.variant.ClothesType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CreeperGirlCasual extends MonsterGirlClothes {
-    public CreeperGirlCasual(CreeperGirlTexture texture, Settings settings) {
+    public CreeperGirlCasual(ClothesType texture, Settings settings) {
         super(texture, settings);
     }
 

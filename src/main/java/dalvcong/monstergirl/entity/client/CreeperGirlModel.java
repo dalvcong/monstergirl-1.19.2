@@ -12,12 +12,12 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 public class CreeperGirlModel extends AnimatedGeoModel<CreeperGirlEntity> {
     @Override
     public Identifier getModelResource(CreeperGirlEntity object) {
-        return new Identifier(MonsterGirl.MOD_ID, "geo/creepergirl.geo.json");
+        return CreeperGirlRenderer.MODEL.get(object.getClothesType());
     }
 
     @Override
     public Identifier getTextureResource(CreeperGirlEntity object) {
-        return CreeperGirlRenderer.TEXTURE.get(object.getTexture());
+        return CreeperGirlRenderer.TEXTURE.get(object.getClothesType());
     }
 
     @Override

@@ -3,15 +3,15 @@ package dalvcong.monstergirl.entity.variant;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public enum CreeperGirlTexture {
+public enum ClothesType {
     NUDE(0),
     CASUAL(1);
 
-    private static final CreeperGirlTexture[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(CreeperGirlTexture::getIndex)).toArray(CreeperGirlTexture[]::new);
+    private static final ClothesType[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(ClothesType::getIndex)).toArray(ClothesType[]::new);
 
     private final int index;
 
-    CreeperGirlTexture(int index) {
+    ClothesType(int index) {
         this.index = index;
     }
 
@@ -19,7 +19,7 @@ public enum CreeperGirlTexture {
         return this.index;
     }
 
-    public static CreeperGirlTexture byIndex(int index) {
+    public static ClothesType byIndex(int index) {
         return VALUES[index % VALUES.length];
     }
 }

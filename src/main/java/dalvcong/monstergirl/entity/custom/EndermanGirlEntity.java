@@ -108,9 +108,11 @@ public class EndermanGirlEntity extends MonsterGirlEntity implements IAnimatable
                         if (this.isSitting()) {
                             this.setSitting(false);
                             player.sendMessage(Text.literal("跟随模式"),true);
+                            this.updateClothes();
                         } else {
                             this.setSitting(true);
                             player.sendMessage(Text.literal("待机模式"),true);
+                            this.updateClothes();
                         }
                     }
                     return ActionResult.SUCCESS;

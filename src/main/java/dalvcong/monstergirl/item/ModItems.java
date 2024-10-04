@@ -2,7 +2,7 @@ package dalvcong.monstergirl.item;
 
 import dalvcong.monstergirl.MonsterGirl;
 import dalvcong.monstergirl.entity.ModEntities;
-import dalvcong.monstergirl.entity.variant.CreeperGirlTexture;
+import dalvcong.monstergirl.entity.variant.ClothesType;
 import dalvcong.monstergirl.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
@@ -16,22 +16,22 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL)));
 
     public static final Item CREEPERGIRL_CASUAL = regisierItem("creepergirl_casual",
-            new CreeperGirlCasual(CreeperGirlTexture.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new CreeperGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item ENDERMANGIRL_CASUAL = regisierItem("endermangirl_casual",
-            new EndermanGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new EndermanGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item ZOMBIEGIRL_CASUAL = regisierItem("zombiegirl_casual",
-            new ZombieGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new ZombieGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item SKELETONGIRL_CASUAL = regisierItem("skeletongirl_casual",
-            new SkeletonGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new SkeletonGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item SPIDERGIRL_CASUAL = regisierItem("spidergirl_casual",
-            new SpiderGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new SpiderGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item CAVESPIDERGIRL_CASUAL = regisierItem("cavespidergirl_casual",
-            new CaveSpiderGirlCasual(new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
+            new CaveSpiderGirlCasual(ClothesType.CASUAL, new FabricItemSettings().group(ModItemGroup.MONSTERGIRL).maxCount(1)));
 
     public static final Item CREEPERGIRL_SPAWN_EGG = regisierItem("creepergirl_spawn_egg",
             new SpawnEggItem(ModEntities.CREEPERGIRL, 0xffffff, 0x000000,
